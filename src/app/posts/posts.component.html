@@ -1,0 +1,25 @@
+<div class="post-container" *ngFor="let post of posts">
+  <div class="post-content">
+    <h1 class="post-title">{{ post.title }}</h1>
+    <div class="post-info">
+      <p>Channel: {{ post.chanel }}</p>
+      <p>Likes: {{ post.likes }}</p>
+      <p>Date: {{ post.date | date }}</p>
+    </div>
+    <p class="post-text">{{ post.content }}</p>
+    <div class="post-image-container">
+      <img class="post-image" [src]="post.img" alt="{{ post.title }}">
+    </div>
+  </div>
+
+  <div class="comment-container" *ngFor="let comment of post.comments">
+    <div class="comment-content">
+      <p>{{ comment.user }} says: {{ comment.text }}</p>
+      <div class="comment-info">
+        <p class="comment-likes">{{ comment.like }} likes</p>
+        <p class="comment-dislikes">{{ comment.dis }} dislikes</p>
+        <p>Date: {{ comment.date | date }}</p>
+      </div>
+    </div>
+  </div>
+</div>
