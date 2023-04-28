@@ -1,15 +1,23 @@
+<div style="display: flex">
 <div id="newPost">
-  <h1>Новый пост:</h1>
+  <h1>Новый блог:</h1>
   <form id="blog-form">
     <label for="blog-name">Название блога:</label>
-    <input type="text" id="blog-name" name="blog-name" required>
+    <input [(ngModel)]="name" type="text" style="border: white" id="blog-name" name="blog-name" required>
 
     <label for="blog-text">Текст блога:</label>
-    <textarea id="blog-text" name="blog-text" required></textarea>
+    <textarea [(ngModel)]="text_in" id="blog-text"  style="border: white" name="blog-text" required></textarea>
 
     <label for="blog-image">Изображение блога:</label>
-    <input type="file" id="blog-image" name="blog-image">
+    <input [(ngModel)]="img" type="file"  style="border: white" id="blog-image" name="blog-image">
 
-    <button type="submit">Добавить блог</button>
+    <label for="blog-image">Канал:</label>
+    <input [(ngModel)]="ch" type="text"  style="border: white" list="ch" id="chanel-name" name="blog-name" required>
+    <datalist id="ch">
+      <option  *ngFor="let ch of chanells" value="@{{ch.id}}-{{ch.name}}">
+    </datalist>
+    <button (click)="myFunction()" class="sub" type="submit">Добавить блог</button>
   </form>
 </div>
+</div>
+<button routerLink="/image">Image pick</button>

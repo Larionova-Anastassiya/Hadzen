@@ -78,12 +78,3 @@ h1 {
 #blog-name{
   flex-direction: row;
 }
-/* Стили для кнопки */
-.dropbtn {
-  background-color: #4CAF50;
-  color: white;
-  padding: 16px;
-  font-size: 16px;
-  border: none;
-  cursor: pointer;
-}

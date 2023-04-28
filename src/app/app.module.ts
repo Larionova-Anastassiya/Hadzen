@@ -10,14 +10,24 @@ import { NewPostComponent } from './new-post/new-post.component';
 import {LogRegComponent} from "./log-reg/log-reg.component";
 import {PostsComponent} from "./posts/posts.component";
 import {PostDetailComponent} from "./post-detail/post-detail.component";
+import { ShortChannelsComponent } from './short-channels/short-channels.component';
+import { ChenellBlogsComponent } from './chenell-blogs/chenell-blogs.component';
+import { NewChanellComponent } from './new-chanell/new-chanell.component';
+import {FormsModule} from "@angular/forms";
+import { ManagerComponent } from './manager/manager.component';
+import { ImageSearchComponent } from './image-search/image-search.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'about', component: AboutComponent },
   { path: 'new-post', component: NewPostComponent },
+  { path: 'new-chanell', component: NewChanellComponent },
   { path: 'login', component: LogRegComponent },
-  { path: 'posts', component: PostsComponent },
-  { path: ':posts/:postId', component: PostDetailComponent },
+  { path: 'posts', component: HomeComponent },
+  {path: 'chanell/:postId', component: ChenellBlogsComponent},
+  { path: 'posts/:postId', component: PostDetailComponent },
+  { path: 'mang',component:ManagerComponent},
+  { path: 'image',component:ImageSearchComponent},
   { path: '', redirectTo: '/home', pathMatch: 'full' },
 ];
 
@@ -30,12 +40,18 @@ const routes: Routes = [
     NewPostComponent,
     LogRegComponent,
     PostsComponent,
-    PostDetailComponent
+    PostDetailComponent,
+    ShortChannelsComponent,
+    ChenellBlogsComponent,
+    NewChanellComponent,
+    ManagerComponent,
+    ImageSearchComponent,
   ],
-  imports: [
-    BrowserModule,
-    RouterModule.forRoot(routes)
-  ],
+    imports: [
+        BrowserModule,
+        RouterModule.forRoot(routes),
+        FormsModule
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })
