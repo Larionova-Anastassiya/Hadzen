@@ -6,25 +6,45 @@ from django.contrib.auth.views import PasswordChangeView
 from django.urls import reverse_lazy
 from .forms import SignUpForm, EditProfileForm, PasswordChangingForm, ProfilePageForm
 from api.models import Profile
+from rest_framework import generics
+from django.contrib.auth.mixins import LoginRequiredMixin
+from rest_framework.permissions import IsAuthenticated
+from .serializers import ProfileSerializer, UserSerializer
 
 
-class CreateProfilePageView(CreateView):
+# class CreateProfilePageView(CreateView):
+#     model = Profile
+#     form_class = ProfilePageForm
+#     template_name = "registration/create_user_profile_page.html"
+#
+#     # fields = '__all__'
+#
+#     def form_valid(self, form):
+#         form.instance.user = self.request.user
+#         return super().form_valid(form)
+
+class CreateProfilePageView(generics.CreateAPIView):
     model = Profile
     form_class = ProfilePageForm
     template_name = "registration/create_user_profile_page.html"
+    serializer_class = ProfileSerializer
+    queryset = Profile.objects.all()
 
-    # fields = '__all__'
-
-    def form_valid(self, form):
-        form.instance.user = self.request.user
-        return super().form_valid(form)
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)
 
 
-class EditProfilePageView(generic.UpdateView):
+# class EditProfilePageView(generic.UpdateView):
+#     model = Profile
+#     template_name = 'registration/edit_profile_page.html'
+#     fields = ['bio', 'profile_pic', 'website_url', 'facebook_url', 'twitter_url', 'instagram_url', 'pinterest_url']
+#     success_url = reverse_lazy('home')
+class EditProfilePageView(generics.UpdateAPIView):
     model = Profile
     template_name = 'registration/edit_profile_page.html'
-    fields = ['bio', 'profile_pic', 'website_url', 'facebook_url', 'twitter_url', 'instagram_url', 'pinterest_url']
-    success_url = reverse_lazy('home')
+    serializer_class = ProfileSerializer
+    queryset = Profile.objects.all()
+    lookup_field = 'pk'
 
 
 class ShowProfilePageView(DetailView):

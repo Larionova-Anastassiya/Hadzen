@@ -1,0 +1,15 @@
+<div id="newPost">
+  <h1>Новый канал:</h1>
+  <form id="blog-form">
+    <label for="blog-name">Название канала:</label>
+    <input type="text"  style="border: white" id="blog-name" name="blog-name" required [(ngModel)]="name">
+
+    <label for="blog-text">Описание канала:</label>
+    <textarea id="blog-text"   style="border: white" name="blog-text" required [(ngModel)]="title"></textarea>
+
+    <label for="blog-image">Аватарка канала:</label>
+    <input type="file"  style="border: white"  id="blog-image" name="blog-image" [(ngModel)]="img">
+
+    <button type="submit"  (click)="myFunction()">Создать канал</button>
+  </form>
+</div>

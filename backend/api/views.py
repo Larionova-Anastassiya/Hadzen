@@ -1,13 +1,16 @@
 from django.shortcuts import render, get_object_or_404
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
+from rest_framework.decorators import api_view
 from .models import Post, Category, Comment
 from .forms import PostForm, EditForm, CommentForm
 from django.urls import reverse_lazy, reverse
 from django.http import HttpResponseRedirect
+from .serializers import PostSerializer, ProfileSerializer, CommentSerializer
+from rest_framework import generics
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework import status
 
-
-# def home(request):
-#	return render(request, 'home.html', {})
 
 def LikeView(request, pk):
     post = get_object_or_404(Post, id=request.POST.get('post_id'))
